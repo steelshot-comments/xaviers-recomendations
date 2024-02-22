@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "519358647739",
+    "project_id": "recommendations-ced03",
+    "storage_bucket": "recommendations-ced03.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:519358647739:android:e9d2c7500e67256cddc89e",
+        "android_client_info": {
+          "package_name": "com.example.map_test"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAJb2d-C713KaBkJ7ztR9xDbQyl5Vrl-bg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
