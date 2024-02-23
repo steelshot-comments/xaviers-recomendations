@@ -1,13 +1,13 @@
 part of '../home_screen.dart';
 
-class ExploreScreen extends StatefulWidget {
-  const ExploreScreen({super.key});
+class ExplorePage extends StatefulWidget {
+  const ExplorePage({super.key});
 
   @override
-  State<ExploreScreen> createState() => _ExploreScreenState();
+  State<ExplorePage> createState() => _ExplorePageState();
 }
 
-class _ExploreScreenState extends State<ExploreScreen> {
+class _ExplorePageState extends State<ExplorePage> {
   final Stream<QuerySnapshot> _usersStream =
       FirebaseFirestore.instance.collection('reviews').snapshots();
 
@@ -29,9 +29,18 @@ class _ExploreScreenState extends State<ExploreScreen> {
               .map((DocumentSnapshot document) {
                 Map<String, dynamic> data =
                     document.data()! as Map<String, dynamic>;
-                return ListTile(
-                  title: Text(data['location']),
-                  subtitle: Text(data['author']),
+                return Card(
+                  child: Column(
+                    children: [
+                      ReviewCard(
+                        author: data['author'],
+                        locationName: data['location'],
+                        category: data['category'],
+                        description: data['description'],
+                        rating: data['rating'],
+                      )
+                    ],
+                  ),
                 );
               })
               .toList()

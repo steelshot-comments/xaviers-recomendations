@@ -1,4 +1,4 @@
-part of 'auth_components.dart';
+import 'package:flutter/material.dart';
 
 class AuthButton extends StatelessWidget {
   const AuthButton({super.key, required this.onTap, required this.title});

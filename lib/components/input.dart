@@ -1,4 +1,4 @@
-part of 'auth_components.dart';
+import 'package:flutter/material.dart';
 
 class AuthInput extends StatelessWidget {
   AuthInput(

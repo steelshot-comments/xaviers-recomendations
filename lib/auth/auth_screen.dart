@@ -2,7 +2,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:animate_do/animate_do.dart';
-import 'package:map_test/components/auth_components.dart';
+import 'package:map_test/components/auth_button.dart';
+import 'package:map_test/components/input.dart';
 
 part 'firebase_functions.dart';
 part 'auth_form.dart';
