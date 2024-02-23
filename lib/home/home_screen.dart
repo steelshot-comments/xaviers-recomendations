@@ -34,36 +34,37 @@ class _HomeScreenState extends State<HomeScreen> {
           actions: [
             IconButton(
                 onPressed: () {
-                  Navigator.of(context).push(
-                      MaterialPageRoute(builder: (context) => const Profile()));
+                  Navigator.of(context)
+                      .push(MaterialPageRoute(builder: (context) => Profile()));
                 },
                 icon: const Icon(Icons.person))
           ]),
       bottomNavigationBar: NavigationBar(
-          height: kToolbarHeight,
-          surfaceTintColor: Colors.white,
-          onDestinationSelected: (value) {
-            setState(() {
-              currentPageIndex = value;
-            });
-          },
-          selectedIndex: currentPageIndex,
-          // labelBehavior: NavigationDestinationLabelBehavior.onlyShowSelected,
-          indicatorColor: Color.fromRGBO(255, 106, 84, 0.7),
-          backgroundColor: Colors.white,
-          overlayColor: MaterialStatePropertyAll(Colors.white),
-          destinations: const [
-            NavigationDestination(
-                icon: Icon(Icons.home_outlined), label: "Home"),
-            NavigationDestination(
-              icon: Icon(Icons.explore_outlined),
-              label: "Explore",
-            ),
-          ]),
+        indicatorShape: const RoundedRectangleBorder(
+            borderRadius: BorderRadius.all(Radius.circular(10))),
+        height: kToolbarHeight + 10,
+        surfaceTintColor: Colors.white,
+        onDestinationSelected: (value) {
+          setState(() {
+            currentPageIndex = value;
+          });
+        },
+        selectedIndex: currentPageIndex,
+        indicatorColor: Color.fromRGBO(255, 215, 209, 1),
+        backgroundColor: Colors.white,
+        overlayColor: const MaterialStatePropertyAll(Colors.white),
+        destinations: const [
+          NavigationDestination(icon: Icon(Icons.home_outlined), label: "Home"),
+          NavigationDestination(
+            icon: Icon(Icons.explore_outlined),
+            label: "Explore",
+          ),
+        ],
+      ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          Navigator.of(context).push(
-              MaterialPageRoute(builder: (context) => const PostReview()));
+          Navigator.of(context)
+              .push(MaterialPageRoute(builder: (context) => PostReview()));
         },
         backgroundColor: const Color.fromRGBO(204, 91, 75, 1),
         child: const Icon(

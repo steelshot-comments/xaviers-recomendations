@@ -12,7 +12,7 @@
 //         buttonColor: Colors.blue,
 //         buttonText: 'Set Current Location',
 //         onPicked: (pickedData) {
-//           print(pickedData.address);
+//           debugPrint(pickedData.address);
 //         },
 //       ),
 //     );

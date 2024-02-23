@@ -2,7 +2,9 @@ import 'package:flutter/services.dart';
 import 'package:flutter/material.dart';
 
 class DescriptionBox extends StatefulWidget {
-  const DescriptionBox({super.key});
+  const DescriptionBox({super.key, required this.controller});
+
+  final TextEditingController controller;
 
   @override
   State<DescriptionBox> createState() => _DescriptionBoxState();
@@ -14,6 +16,7 @@ class _DescriptionBoxState extends State<DescriptionBox> {
     String counter = "";
 
     return TextField(
+      controller: widget.controller,
       onChanged: (value) {
         setState(() {
           counter = (220 - value.length).toString();
