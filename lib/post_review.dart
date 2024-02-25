@@ -18,11 +18,11 @@ class _PostReviewState extends State<PostReview> {
 
   @override
   Widget build(BuildContext context) {
-  User? user = FirebaseAuth.instance.currentUser;
+    User? user = FirebaseAuth.instance.currentUser;
     num rating = 0;
     // String? uniqueName;
     String? displayName;
-    if(user != null){
+    if (user != null) {
       displayName = "${user.displayName}${user.uid}";
     }
     return Scaffold(
@@ -71,7 +71,7 @@ class _PostReviewState extends State<PostReview> {
                         CollectionReference reviews =
                             FirebaseFirestore.instance.collection('reviews');
                         await reviews.doc().set({
-                          'location': controller.text,
+                          'location name': controller.text,
                           'author': displayName,
                           'category': 'travel',
                           'description': descriptionController.text,

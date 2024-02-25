@@ -33,7 +33,7 @@ class _ExplorePageState extends State<ExplorePage> {
                       document.data()! as Map<String, dynamic>;
                   return ReviewCard(
                     author: data['author'],
-                    locationName: data['location'],
+                    locationName: data['location name'],
                     category: data['category'],
                     description: data['description'],
                     rating: data['rating'],
