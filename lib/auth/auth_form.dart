@@ -117,7 +117,12 @@ class _AuthFormState extends State<AuthForm> {
               const SizedBox(
                 height: 20,
               ),
-              AuthButton(
+              SquircleButton(
+                textColor: Colors.white,
+                  gradient: const LinearGradient(colors: [
+                    Color.fromRGBO(204, 91, 75, 1),
+                    Color.fromRGBO(255, 106, 84, 1),
+                  ]),
                   onTap: onButtonPress,
                   title: authTypeSignUp ? "Sign up" : "Sign in"),
               const SizedBox(

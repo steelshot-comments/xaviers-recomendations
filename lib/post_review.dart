@@ -15,6 +15,8 @@ class PostReview extends StatefulWidget {
 class _PostReviewState extends State<PostReview> {
   final TextEditingController controller = TextEditingController();
   final TextEditingController descriptionController = TextEditingController();
+  CollectionReference locations =
+      FirebaseFirestore.instance.collection('locations');
 
   @override
   Widget build(BuildContext context) {
@@ -25,9 +27,11 @@ class _PostReviewState extends State<PostReview> {
     if (user != null) {
       displayName = "${user.displayName}${user.uid}";
     }
+
     return Scaffold(
-        backgroundColor: Colors.white,
-        body: Column(children: [
+      backgroundColor: Colors.white,
+      body: Column(
+        children: [
           const Expanded(child: Text("j")),
           Padding(
             padding: const EdgeInsets.all(20),
@@ -36,6 +40,7 @@ class _PostReviewState extends State<PostReview> {
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
                 // const AutocompleteLocations(),
+
                 TextField(
                   controller: controller,
                 ),
@@ -86,12 +91,14 @@ class _PostReviewState extends State<PostReview> {
                           color: Colors.white,
                         ),
                       ),
-                    )
+                    ),
                   ],
                 ),
               ],
             ),
           ),
-        ]));
+        ],
+      ),
+    );
   }
 }

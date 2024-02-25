@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class AuthInput extends StatelessWidget {
-  AuthInput(
+  const AuthInput(
       {super.key,
       required this.controller,
       this.icon,
@@ -10,20 +10,19 @@ class AuthInput extends StatelessWidget {
       this.hintText,
       this.validator});
 
-  TextEditingController controller;
-  Icon? icon;
-  bool? obscureText = false;
-  String? hintText;
-  String? Function(String?)? validator;
-
-  void onChanged;
+  final TextEditingController controller;
+  final Icon? icon;
+  final bool? obscureText;
+  final String? hintText;
+  final String? Function(String?)? validator;
+  final void onChanged;
 
   @override
   Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.all(5),
       child: TextFormField(
-        cursorColor: Color.fromRGBO(204, 91, 75, 1),
+        cursorColor: const Color.fromRGBO(204, 91, 75, 1),
         autovalidateMode: AutovalidateMode.always,
         validator: validator,
         controller: controller,

@@ -1,4 +1,8 @@
-part of 'auth_screen.dart';
+import 'dart:typed_data';
+
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_storage/firebase_storage.dart';
+import 'package:flutter/material.dart';
 
 class FirebaseAuthFunctions {
   static signUpUser(
@@ -50,6 +54,20 @@ class FirebaseAuthFunctions {
       ScaffoldMessenger.of(ctx).showSnackBar(SnackBar(
         content: Text(e.toString()),
       ));
+    }
+  }
+
+  static uploadProfilePic(String fileName, Uint8List file) async {
+    try {
+      FirebaseStorage storage = FirebaseStorage.instance;
+      Reference ref = storage.ref('profile_photos').child(fileName);
+      UploadTask uploadTask = ref.putData(file);
+      TaskSnapshot snapshot = await uploadTask;
+      String downloadUrl = await snapshot.ref.getDownloadURL();
+      // debugPrint('--------------- DOWNLOAD URL: $downloadUrl ----------------');
+      return downloadUrl;
+    } catch (e) {
+      return e.toString();
     }
   }
 }

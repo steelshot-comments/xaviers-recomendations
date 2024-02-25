@@ -1,9 +1,11 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:map_test/components/review_card.dart';
+import 'package:map_test/components/dropdown.dart';
 import 'package:map_test/post_review.dart';
 import 'package:map_test/profile.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 part 'explore/explore_page.dart';
 part 'home/home_page.dart';
@@ -50,7 +52,7 @@ class _HomeScreenState extends State<HomeScreen> {
           });
         },
         selectedIndex: currentPageIndex,
-        indicatorColor: Color.fromRGBO(255, 215, 209, 1),
+        indicatorColor: const Color.fromRGBO(255, 215, 209, 1),
         backgroundColor: Colors.white,
         overlayColor: const MaterialStatePropertyAll(Colors.white),
         destinations: const [
@@ -73,7 +75,7 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
       ),
       body: const <Widget>[
-        HomePage(),
+        ViewMap(),
         ExplorePage(),
       ][currentPageIndex],
     );

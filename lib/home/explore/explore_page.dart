@@ -21,7 +21,11 @@ class _ExplorePageState extends State<ExplorePage> {
         }
 
         if (snapshot.connectionState == ConnectionState.waiting) {
-          return const Text("Loading");
+          return const Center(
+            child: CircularProgressIndicator(
+              color: Color.fromRGBO(255, 106, 84, 1),
+            ),
+          );
         }
 
         return Padding(
