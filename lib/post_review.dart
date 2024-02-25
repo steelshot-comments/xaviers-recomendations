@@ -6,7 +6,7 @@ import 'package:map_test/components/review_card_description_box.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class PostReview extends StatefulWidget {
-  PostReview({super.key});
+  const PostReview({super.key});
 
   @override
   State<PostReview> createState() => _PostReviewState();
@@ -18,7 +18,13 @@ class _PostReviewState extends State<PostReview> {
 
   @override
   Widget build(BuildContext context) {
+  User? user = FirebaseAuth.instance.currentUser;
     num rating = 0;
+    // String? uniqueName;
+    String? displayName;
+    if(user != null){
+      displayName = "${user.displayName}${user.uid}";
+    }
     return Scaffold(
         backgroundColor: Colors.white,
         body: Column(children: [
@@ -51,6 +57,7 @@ class _PostReviewState extends State<PostReview> {
                         }),
                     ElevatedButton(
                       style: ButtonStyle(
+                        elevation: MaterialStateProperty.all(2),
                         backgroundColor: MaterialStateProperty.all(
                             const Color.fromRGBO(204, 91, 75, 1)),
                         shape:
@@ -65,16 +72,19 @@ class _PostReviewState extends State<PostReview> {
                             FirebaseFirestore.instance.collection('reviews');
                         await reviews.doc().set({
                           'location': controller.text,
-                          'author': 'Yeshaya',
+                          'author': displayName,
                           'category': 'travel',
                           'description': descriptionController.text,
                           'rating': rating,
                         }).then((value) => ScaffoldMessenger.of(context)
-                            .showSnackBar(const SnackBar(content: Text("Posted!"))));
+                            .showSnackBar(
+                                const SnackBar(content: Text("Posted!"))));
                       },
                       child: const Text(
-                        "Post",
-                        style: TextStyle(color: Colors.white),
+                        "POST",
+                        style: TextStyle(
+                          color: Colors.white,
+                        ),
                       ),
                     )
                   ],

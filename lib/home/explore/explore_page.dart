@@ -24,27 +24,24 @@ class _ExplorePageState extends State<ExplorePage> {
           return const Text("Loading");
         }
 
-        return ListView(
-          children: snapshot.data!.docs
-              .map((DocumentSnapshot document) {
-                Map<String, dynamic> data =
-                    document.data()! as Map<String, dynamic>;
-                return Card(
-                  child: Column(
-                    children: [
-                      ReviewCard(
-                        author: data['author'],
-                        locationName: data['location'],
-                        category: data['category'],
-                        description: data['description'],
-                        rating: data['rating'],
-                      )
-                    ],
-                  ),
-                );
-              })
-              .toList()
-              .cast(),
+        return Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 10),
+          child: ListView(
+            children: snapshot.data!.docs
+                .map((DocumentSnapshot document) {
+                  Map<String, dynamic> data =
+                      document.data()! as Map<String, dynamic>;
+                  return ReviewCard(
+                    author: data['author'],
+                    locationName: data['location'],
+                    category: data['category'],
+                    description: data['description'],
+                    rating: data['rating'],
+                  );
+                })
+                .toList()
+                .cast(),
+          ),
         );
       },
     );
