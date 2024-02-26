@@ -1,15 +1,15 @@
-part of '../home_screen.dart';
+part of 'home_screen.dart';
 
-class ExplorePage extends StatefulWidget {
-  const ExplorePage({super.key});
+class ExplorePageCopy extends StatefulWidget {
+  const ExplorePageCopy({super.key});
 
   @override
-  State<ExplorePage> createState() => _ExplorePageState();
+  State<ExplorePageCopy> createState() => _ExplorePageCopyState();
 }
 
-class _ExplorePageState extends State<ExplorePage> {
+class _ExplorePageCopyState extends State<ExplorePageCopy> {
   final Stream<QuerySnapshot> _usersStream =
-      FirebaseFirestore.instance.collection('reviews').snapshots();
+      FirebaseFirestore.instance.collection('locations').snapshots();
 
   @override
   Widget build(BuildContext context) {
@@ -35,12 +35,10 @@ class _ExplorePageState extends State<ExplorePage> {
                 .map((DocumentSnapshot document) {
                   Map<String, dynamic> data =
                       document.data()! as Map<String, dynamic>;
-                  return ReviewCard(
-                    author: data['author'],
-                    locationName: data['location name'],
-                    category: data['category'],
-                    description: data['description'],
-                    rating: data['rating'],
+                  return LocationCard(
+                    locationName: data['name'],
+                    image: data['image'],
+                    locationRef: document.id,
                   );
                 })
                 .toList()

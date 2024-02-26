@@ -162,7 +162,18 @@ class ForgotPasswordPage extends StatelessWidget {
               const SizedBox(height: 20.0),
               ElevatedButton(
                 onPressed: () {},
-                child: const Text('Reset Password'),
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.red,
+                  padding: const EdgeInsets.symmetric(
+                      horizontal: 50.0, vertical: 15.0),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10.0),
+                  ),
+                ),
+                child: const Text(
+                  'Reset password',
+                  style: TextStyle(fontSize: 16.0, color: Colors.white),
+                ),
               ),
             ],
           ),
@@ -197,14 +208,28 @@ class _SignUpScreenState extends State<SignUpScreen> {
           children: [
             TextField(
               controller: _usernameController,
-              decoration: const InputDecoration(labelText: 'Username'),
+              decoration: InputDecoration(
+                labelText: 'Username',
+                filled: true,
+                fillColor: Colors.white,
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(10.0),
+                ),
+              ),
               keyboardType: TextInputType.text,
               textInputAction: TextInputAction.next,
             ),
             const SizedBox(height: 16.0),
             TextField(
               controller: _emailController,
-              decoration: const InputDecoration(labelText: 'Email'),
+              decoration: InputDecoration(
+                labelText: 'Email',
+                filled: true,
+                fillColor: Colors.white,
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(10.0),
+                ),
+              ),
               keyboardType: TextInputType.emailAddress,
               textInputAction: TextInputAction.next,
             ),
@@ -212,7 +237,14 @@ class _SignUpScreenState extends State<SignUpScreen> {
             TextField(
               controller: _passwordController,
               obscureText: true,
-              decoration: const InputDecoration(labelText: 'Password'),
+              decoration: InputDecoration(
+                labelText: 'Password',
+                filled: true,
+                fillColor: Colors.white,
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(10.0),
+                ),
+              ),
               onChanged: (value) {
                 // Update your password value
               },
@@ -226,7 +258,18 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 FirebaseFunctions.signUpUser(
                     email, password, username, context);
               },
-              child: const Text('Sign Up'),
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.red,
+                padding: const EdgeInsets.symmetric(
+                    horizontal: 50.0, vertical: 15.0),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10.0),
+                ),
+              ),
+              child: const Text(
+                'Sign In',
+                style: TextStyle(fontSize: 16.0, color: Colors.white),
+              ),
             ),
           ],
         ),

@@ -2,20 +2,21 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
 class ReviewCard extends StatelessWidget {
-  const ReviewCard({
-    super.key,
-    required this.locationName,
-    required this.author,
-    required this.description,
-    required this.category,
-    required this.rating,
-  });
+  const ReviewCard(
+      {super.key,
+      required this.locationName,
+      required this.author,
+      required this.description,
+      required this.category,
+      required this.rating,
+      required this.image});
 
   final String locationName;
   final String author;
   final String description;
   final String category;
   final num rating;
+  final String image;
 
   @override
   Widget build(BuildContext context) {

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'dart:typed_data';
-import 'package:map_test/utils.dart';
 
 class ProfilePhoto extends StatefulWidget {
   const ProfilePhoto({super.key});
@@ -12,6 +11,17 @@ class ProfilePhoto extends StatefulWidget {
 
 class _ProfilePhotoState extends State<ProfilePhoto> {
   Uint8List? _image;
+
+  pickImage(ImageSource source) async {
+    final ImagePicker imagePicker = ImagePicker();
+    XFile? file = await imagePicker.pickImage(source: source);
+
+    if (file != null) {
+      return await file.readAsBytes();
+    } else {
+      debugPrint("Error while uploading image");
+    }
+  }
 
   void selectImage() async {
     Uint8List img = await pickImage(ImageSource.gallery);

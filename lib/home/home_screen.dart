@@ -1,14 +1,16 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:map_test/components/review_card.dart';
+import 'package:map_test/components/location_card.dart';
 import 'package:map_test/components/dropdown.dart';
 import 'package:map_test/post_review.dart';
 import 'package:map_test/profile.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-part 'explore/explore_page.dart';
-part 'home/home_page.dart';
+// part 'explore_page.dart';
+part 'explore_page_copy.dart';
+part 'home_page.dart';
+part 'location_reviews.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -76,7 +78,7 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
       body: const <Widget>[
         ViewMap(),
-        ExplorePage(),
+        ExplorePageCopy(),
       ][currentPageIndex],
     );
   }

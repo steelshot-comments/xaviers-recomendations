@@ -12,7 +12,7 @@ import 'package:image_picker/image_picker.dart';
 import 'dart:typed_data';
 
 class Profile extends StatefulWidget {
-  Profile({super.key});
+  const Profile({super.key});
 
   @override
   State<Profile> createState() => _ProfileState();
