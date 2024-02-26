@@ -44,7 +44,7 @@ class _MainAppState extends State<MainApp> {
             if (snapshot.hasData) {
               return const HomeScreen();
             } else {
-              return const AuthScreen();
+              return LoginApp();
             }
           }),
     );

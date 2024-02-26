@@ -6,6 +6,7 @@ import 'package:map_test/auth/auth_screen.dart';
 // import 'package:map_test/components/profile_photo.dart';
 import 'package:map_test/components/squircle_button.dart';
 import 'package:map_test/firebase_functions.dart';
+import 'package:map_test/rylans_login_screen.dart';
 import 'package:map_test/utils.dart';
 import 'package:image_picker/image_picker.dart';
 import 'dart:typed_data';
@@ -166,7 +167,7 @@ class _ProfileState extends State<Profile> {
                     Navigator.pushReplacement(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => const AuthScreen()));
+                            builder: (context) => LoginApp()));
                   },
                   title: "Sign out",
                   textColor: const Color.fromRGBO(255, 106, 84, 1),
@@ -177,7 +178,7 @@ class _ProfileState extends State<Profile> {
                     Navigator.pushReplacement(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => const AuthScreen()));
+                            builder: (context) => LoginApp()));
                   },
                   title: "Delete account",
                   textColor: const Color.fromRGBO(255, 106, 84, 1),
