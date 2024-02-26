@@ -1,28 +1,19 @@
 import 'package:flutter/material.dart';
-
-class LoginApp extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Login App',
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: LoginPage(),
-    );
-  }
-}
+import 'package:map_test/firebase_functions.dart';
 
 class LoginPage extends StatelessWidget {
+  LoginPage({super.key});
+
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController pwdController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.blueGrey[100],
       body: SingleChildScrollView(
         child: Column(
           children: <Widget>[
-            SizedBox(height: 80.0),
+            const SizedBox(height: 80.0),
             Container(
               alignment: Alignment.center,
               child: Image.asset(
@@ -30,10 +21,11 @@ class LoginPage extends StatelessWidget {
                 height: 150.0,
               ),
             ),
-            SizedBox(height: 30.0),
+            const SizedBox(height: 30.0),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20.0),
               child: TextField(
+                controller: emailController,
                 decoration: InputDecoration(
                   labelText: 'Email',
                   filled: true,
@@ -44,15 +36,13 @@ class LoginPage extends StatelessWidget {
                 ),
                 keyboardType: TextInputType.emailAddress,
                 textInputAction: TextInputAction.next,
-                onChanged: (value) {
-                  // Update your email value
-                },
               ),
             ),
-            SizedBox(height: 20.0),
+            const SizedBox(height: 20.0),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20.0),
               child: TextField(
+                controller: pwdController,
                 decoration: InputDecoration(
                   labelText: 'Password',
                   filled: true,
@@ -62,71 +52,56 @@ class LoginPage extends StatelessWidget {
                   ),
                 ),
                 obscureText: true,
-                onChanged: (value) {
-                  // Update your password value
-                },
               ),
             ),
-            SizedBox(height: 20.0),
+            const SizedBox(height: 20.0),
             ElevatedButton(
               onPressed: () {
-                // Implement sign-in functionality here
+                debugPrint(
+                    '---------------- ${emailController.text} --------------------');
+                FirebaseFunctions.LoginUser(
+                    emailController.text, pwdController.text, context);
               },
               style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.blue,
-                padding: EdgeInsets.symmetric(horizontal: 50.0, vertical: 15.0),
+                backgroundColor: Colors.red,
+                padding: const EdgeInsets.symmetric(
+                    horizontal: 50.0, vertical: 15.0),
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(10.0),
                 ),
               ),
-              child: Text(
+              child: const Text(
                 'Sign In',
-                style: TextStyle(fontSize: 16.0),
+                style: TextStyle(fontSize: 16.0, color: Colors.white),
               ),
             ),
-            SizedBox(height: 20.0),
-            Text(
-              "Don't have an account? Sign up",
-              style: TextStyle(color: Colors.blue),
+            const SizedBox(height: 20.0),
+            TextButton(
+              child: const Text(
+                "Don't have an account? Sign up",
+                style: TextStyle(color: Colors.red),
+              ),
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const SignUpScreen()),
+                );
+              },
             ),
-            SizedBox(height: 10.0),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                TextButton(
-                  onPressed: () {
-                    // Navigate to the sign-up screen
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => SignUpScreen()),
-                    );
-                  },
-                  child: Text(
-                    'Sign Up',
-                    style: TextStyle(color: Colors.blue),
-                  ),
-                ),
-              ],
-            ),
-            SizedBox(height: 10.0),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                TextButton(
-                  onPressed: () {
-                    // Navigate to the forgot password page
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => ForgotPasswordPage()),
-                    );
-                  },
-                  child: Text(
-                    'Forgot Password?',
-                    style: TextStyle(color: Colors.blue),
-                  ),
-                ),
-              ],
+            const SizedBox(height: 10.0),
+            TextButton(
+              onPressed: () {
+                // Navigate to the forgot password page
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => const ForgotPasswordPage()),
+                );
+              },
+              child: const Text(
+                'Forgot Password?',
+                style: TextStyle(color: Colors.red),
+              ),
             ),
           ],
         ),
@@ -136,11 +111,12 @@ class LoginPage extends StatelessWidget {
 }
 
 class ForgotPasswordPage extends StatelessWidget {
+  const ForgotPasswordPage({super.key});
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Forgot Password'),
+        title: const Text('Forgot Password'),
       ),
       body: Center(
         child: Padding(
@@ -148,11 +124,11 @@ class ForgotPasswordPage extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              Text(
+              const Text(
                 'Please enter your email address and new password to reset your password.',
                 textAlign: TextAlign.center,
               ),
-              SizedBox(height: 20.0),
+              const SizedBox(height: 20.0),
               TextField(
                 decoration: InputDecoration(
                   labelText: 'Email',
@@ -168,7 +144,7 @@ class ForgotPasswordPage extends StatelessWidget {
                   // Update your email value
                 },
               ),
-              SizedBox(height: 20.0),
+              const SizedBox(height: 20.0),
               TextField(
                 obscureText: true,
                 decoration: InputDecoration(
@@ -185,11 +161,7 @@ class ForgotPasswordPage extends StatelessWidget {
               ),
               const SizedBox(height: 20.0),
               ElevatedButton(
-                onPressed: () {
-                  // Implement reset password functionality here
-                  // Navigate back to the login page
-                  Navigator.pop(context);
-                },
+                onPressed: () {},
                 child: const Text('Reset Password'),
               ),
             ],
@@ -201,6 +173,8 @@ class ForgotPasswordPage extends StatelessWidget {
 }
 
 class SignUpScreen extends StatefulWidget {
+  const SignUpScreen({super.key});
+
   @override
   _SignUpScreenState createState() => _SignUpScreenState();
 }
@@ -214,67 +188,45 @@ class _SignUpScreenState extends State<SignUpScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Sign Up'),
+        title: const Text('Sign Up'),
       ),
       body: Padding(
-        padding: EdgeInsets.all(16.0),
+        padding: const EdgeInsets.all(16.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             TextField(
               controller: _usernameController,
-              decoration: InputDecoration(labelText: 'Username'),
+              decoration: const InputDecoration(labelText: 'Username'),
               keyboardType: TextInputType.text,
               textInputAction: TextInputAction.next,
-              onChanged: (value) {
-                // Update your username value
-              },
             ),
-            SizedBox(height: 16.0),
+            const SizedBox(height: 16.0),
             TextField(
               controller: _emailController,
-              decoration: InputDecoration(labelText: 'Email'),
+              decoration: const InputDecoration(labelText: 'Email'),
               keyboardType: TextInputType.emailAddress,
               textInputAction: TextInputAction.next,
-              onChanged: (value) {
-                // Update your email value
-              },
-              //validator: (value) {
-              // if (value.isEmpty) {
-              //  return 'Please enter your email';
-              // }
-              // return null;
-              // },
             ),
-            SizedBox(height: 16.0),
+            const SizedBox(height: 16.0),
             TextField(
               controller: _passwordController,
               obscureText: true,
-              decoration: InputDecoration(labelText: 'Password'),
+              decoration: const InputDecoration(labelText: 'Password'),
               onChanged: (value) {
                 // Update your password value
               },
-              //validator: (value) {
-              //if (value.isEmpty) {
-              //return 'Please enter your password';
-              //}
-              //return null;
-              // },
             ),
-            SizedBox(height: 16.0),
+            const SizedBox(height: 16.0),
             ElevatedButton(
               onPressed: () {
-                // Implement your sign-up logic here
                 String username = _usernameController.text;
                 String email = _emailController.text;
                 String password = _passwordController.text;
-                // You can perform validation and further actions here
-                print(
-                    'Username: $username, Email: $email, Password: $password');
-                // Navigate back to the login page
-                Navigator.pop(context);
+                FirebaseFunctions.signUpUser(
+                    email, password, username, context);
               },
-              child: Text('Sign Up'),
+              child: const Text('Sign Up'),
             ),
           ],
         ),

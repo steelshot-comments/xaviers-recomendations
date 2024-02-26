@@ -2,7 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:map_test/auth/auth_screen.dart';
-// import 'package:map_test/components/edit_text.dart';
+import 'package:map_test/components/edit_text.dart';
 // import 'package:map_test/components/profile_photo.dart';
 import 'package:map_test/components/squircle_button.dart';
 import 'package:map_test/firebase_functions.dart';
@@ -25,8 +25,7 @@ class _ProfileState extends State<Profile> {
   }
 
   Future<String> saveProfile(BuildContext context, Uint8List image) async {
-    return await FirebaseAuthFunctions.uploadProfilePic(
-        'profile_photos', image);
+    return await FirebaseFunctions.uploadProfilePic('profile_photos', image);
   }
 
   @override
@@ -43,7 +42,7 @@ class _ProfileState extends State<Profile> {
     void selectImage(BuildContext context) async {
       Uint8List img = await pickImage(ImageSource.gallery);
       String? imageLink =
-          await FirebaseAuthFunctions.uploadProfilePic('profile_photos', img);
+          await FirebaseFunctions.uploadProfilePic('profile_photos', img);
       setState(() {
         _image = imageLink;
       });
@@ -116,32 +115,21 @@ class _ProfileState extends State<Profile> {
                           ),
                         ],
                       ),
-                      // EditText(
-                      //   controller: emailController,
-                      //   prefixLabel: "Email",
-                      // ),
-                      // EditText(
-                      //   controller: passwordController,
-                      //   prefixLabel: "Password",
-                      // ),
+                      EditText(
+                        controller: emailController,
+                        prefixLabel: "Email",
+                      ),
+                      EditText(
+                        controller: passwordController,
+                        prefixLabel: "Password",
+                      ),
                       Row(
                         // mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Expanded(
                             child: SquircleButton(
                               onTap: () {},
-                              title: "Change email",
-                              textColor: const Color.fromRGBO(255, 106, 84, 1),
-                              background: Colors.white,
-                            ),
-                          ),
-                          const SizedBox(
-                            width: 10,
-                          ),
-                          Expanded(
-                            child: SquircleButton(
-                              onTap: () {},
-                              title: "Change password",
+                              title: "Save changes",
                               textColor: const Color.fromRGBO(255, 106, 84, 1),
                               background: Colors.white,
                             ),
@@ -164,26 +152,23 @@ class _ProfileState extends State<Profile> {
               Row(mainAxisAlignment: MainAxisAlignment.center, children: [
                 SquircleButton(
                   onTap: () {
-                    Navigator.pushReplacement(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => LoginApp()));
+                    signOut();
+                    Navigator.pushReplacement(context,
+                        MaterialPageRoute(builder: (context) => LoginPage()));
                   },
                   title: "Sign out",
                   textColor: const Color.fromRGBO(255, 106, 84, 1),
                   background: const Color.fromRGBO(255, 215, 209, 1),
                 ),
-                SquircleButton(
-                  onTap: () {
-                    Navigator.pushReplacement(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => LoginApp()));
-                  },
-                  title: "Delete account",
-                  textColor: const Color.fromRGBO(255, 106, 84, 1),
-                  background: const Color.fromRGBO(255, 215, 209, 1),
-                ),
+                // SquircleButton(
+                //   onTap: () {
+                //     Navigator.pushReplacement(context,
+                //         MaterialPageRoute(builder: (context) => const LoginApp()));
+                //   },
+                //   title: "Delete account",
+                //   textColor: const Color.fromRGBO(255, 106, 84, 1),
+                //   background: const Color.fromRGBO(255, 215, 209, 1),
+                // ),
               ]),
             ],
           ),

@@ -34,7 +34,7 @@ class _AuthFormState extends State<AuthForm> {
               duration: Duration(milliseconds: 1000),
               content: Text("Display name cannot be empty")));
         } else {
-          FirebaseAuthFunctions.signUpUser(emailController.text,
+          FirebaseFunctions.signUpUser(emailController.text,
               passwordController.text, displayNameController.text, context);
         }
       } else {
@@ -44,7 +44,7 @@ class _AuthFormState extends State<AuthForm> {
               duration: Duration(milliseconds: 1000),
               content: Text("Email must be under the xaviers.edu.in domain")));
         } else {
-          FirebaseAuthFunctions.LoginUser(
+          FirebaseFunctions.LoginUser(
               emailController.text, passwordController.text, context);
         }
       }
@@ -118,7 +118,7 @@ class _AuthFormState extends State<AuthForm> {
                 height: 20,
               ),
               SquircleButton(
-                textColor: Colors.white,
+                  textColor: Colors.white,
                   gradient: const LinearGradient(colors: [
                     Color.fromRGBO(204, 91, 75, 1),
                     Color.fromRGBO(255, 106, 84, 1),
