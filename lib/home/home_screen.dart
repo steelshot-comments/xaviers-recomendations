@@ -8,7 +8,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 // part 'explore_page.dart';
-part 'explore_page_copy.dart';
+part 'explore_page.dart';
 part 'home_page.dart';
 part 'location_reviews.dart';
 
@@ -78,7 +78,7 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
       body: const <Widget>[
         ViewMap(),
-        ExplorePageCopy(),
+        ExplorePage(),
       ][currentPageIndex],
     );
   }
