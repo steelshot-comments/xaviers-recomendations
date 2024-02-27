@@ -43,6 +43,7 @@ class _PostReviewState extends State<PostReview> {
 
                 TextField(
                   controller: controller,
+                  decoration: InputDecoration(label: Text('Location name')),
                 ),
                 DescriptionBox(
                   controller: descriptionController,

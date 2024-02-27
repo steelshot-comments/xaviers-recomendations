@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:map_test/home/home_screen.dart';
 
 class LocationCard extends StatelessWidget {
@@ -16,13 +17,17 @@ class LocationCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Navigator.of(context).push(MaterialPageRoute(builder: (context) => LocationReviews(locationRef: locationRef,)));
+        Navigator.of(context).push(MaterialPageRoute(
+            builder: (context) => LocationReviews(
+                  locationRef: locationRef,
+                )));
       },
       child: Card(
+        margin: EdgeInsets.zero,
         color: Colors.white,
         shadowColor: const Color.fromRGBO(255, 215, 209, 1),
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(8),
+          borderRadius: BorderRadius.circular(0),
         ),
         clipBehavior: Clip.antiAliasWithSaveLayer,
         child: Column(

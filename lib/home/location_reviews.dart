@@ -61,15 +61,40 @@ class _LocationReviewsState extends State<LocationReviews> {
           List<DocumentReference> reviewsReference =
               List<DocumentReference>.from(snapshot.data!['reviews']);
 
+          Future<void> _launchUrl2() async {
+            String uri = "xavier+college";
+
+            final String dest = Uri.encodeFull(snapshot.data!['name']);
+            final Uri url = Uri.parse(
+                'https://www.google.com/maps/dir/?api=1&origin=$uri&destination=$dest');
+            if (await canLaunchUrl(url)) {
+              await launchUrl(url);
+            } else {
+              ScaffoldMessenger.of(context).showSnackBar(
+                  const SnackBar(content: Text("Google Maps not installed")));
+              throw 'Could not launch $url';
+            }
+          }
+
           return Column(children: [
             Image.network(
               snapshot.data!['image'],
               height: 300,
+              fit: BoxFit.cover,
             ),
-            Text(
-              snapshot.data!['name'],
-              style: const TextStyle(fontSize: 32),
-            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+              Text(
+                snapshot.data!['name'],
+                style: const TextStyle(fontSize: 32),
+              ),
+              ElevatedButton(
+                  onPressed: () {
+                    _launchUrl2();
+                  },
+                  child: Text('Directions'))
+            ]),
             SingleChildScrollView(
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 10),
@@ -107,14 +132,31 @@ class _LocationReviewsState extends State<LocationReviews> {
                           String displayText = differenceInDays == 0
                               ? '${documentDate.hour}:${documentDate.minute}'
                               : '$differenceInDays days ago';
-                          return ListTile(
-                            title: Text(review.description),
-                            subtitle: Row(
-                              children: [
-                                Text(review.author),
-                                Text(displayText)
-                              ],
-                            ),
+                          return Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              ListTile(
+                                title: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text("${review.author} ($displayText)",
+                                        style: TextStyle(fontSize: 14)),
+                                    Row(
+                                      children: [
+                                        Text(
+                                            "(${review.rating} out of 5 stars)  ",
+                                            style: TextStyle(fontSize: 12)),
+                                        StarRating(rating: review.rating),
+                                      ],
+                                    ),
+                                    const SizedBox(height: 5)
+                                  ],
+                                ),
+                                subtitle: Text(review.description,
+                                    style: TextStyle(fontSize: 15)),
+                              ),
+                              const Divider(),
+                            ],
                           );
                         },
                       ),
@@ -136,9 +178,10 @@ class Review {
   final Timestamp createdAt;
   final int rating;
 
-  Review(
-      {required this.author,
-      required this.rating,
-      required this.description,
-      required this.createdAt});
+  Review({
+    required this.author,
+    required this.rating,
+    required this.description,
+    required this.createdAt,
+  });
 }

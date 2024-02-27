@@ -27,13 +27,13 @@ class _ViewMapState extends State<ViewMap> {
   }
 
   Future<void> _launchUrl2() async {
-    late String ori = Uri.encodeFull(_origin);
-    if (ori == "") {
-      ori = "xavier+college";
+    late String uri = Uri.encodeFull(_origin);
+    if (uri == "") {
+      uri = "xavier+college";
     }
     final String dest = Uri.encodeFull(_destination);
     final Uri url = Uri.parse(
-        'https://www.google.com/maps/dir/?api=1&origin=$ori&destination=$dest&travelmode=$_travelMode');
+        'https://www.google.com/maps/dir/?api=1&origin=$uri&destination=$dest&travelmode=$_travelMode');
     if (await canLaunchUrl(url)) {
       await launchUrl(url);
     } else {
@@ -134,14 +134,15 @@ class _ViewMapState extends State<ViewMap> {
                   ),
                 ),
                 const SizedBox(height: 20.0),
-                // Stack(
-                //   children: [
-                //     Image.asset('assets/bg.jpeg', width: 700.0, height: 400.0),
-                //     const Card(
-                //       elevation: 4,
-                //     ),
-                //   ],
-                // ),
+                Stack(
+                  children: [
+                    Image.asset('assets/card_bg.jpeg',
+                        width: 700.0, height: 400.0),
+                    const Card(
+                      elevation: 4,
+                    ),
+                  ],
+                ),
                 const SizedBox(height: 10.0),
                 Card(
                   elevation: 4,

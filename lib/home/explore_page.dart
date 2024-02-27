@@ -28,22 +28,22 @@ class _ExplorePageState extends State<ExplorePage> {
           );
         }
 
-        return Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 10),
-          child: ListView(
-            children: snapshot.data!.docs
-                .map((DocumentSnapshot document) {
-                  Map<String, dynamic> data =
-                      document.data()! as Map<String, dynamic>;
-                  return LocationCard(
+        return ListView(
+          children: snapshot.data!.docs
+              .map((DocumentSnapshot document) {
+                Map<String, dynamic> data =
+                    document.data()! as Map<String, dynamic>;
+                return Padding(
+                  padding: const EdgeInsets.only(bottom: 10),
+                  child: LocationCard(
                     locationName: data['name'],
                     image: data['image'],
                     locationRef: document.id,
-                  );
-                })
-                .toList()
-                .cast(),
-          ),
+                  ),
+                );
+              })
+              .toList()
+              .cast(),
         );
       },
     );

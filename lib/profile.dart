@@ -47,7 +47,7 @@ class _ProfileState extends State<Profile> {
         _image = imageLink;
       });
       ScaffoldMessenger.of(context)
-          .showSnackBar(SnackBar(content: Text("Profile pic updated")));
+          .showSnackBar(const SnackBar(content: Text("Profile pic updated")));
       debugPrint('------------ $_image ------------');
     }
 
@@ -160,15 +160,6 @@ class _ProfileState extends State<Profile> {
                   textColor: const Color.fromRGBO(255, 106, 84, 1),
                   background: const Color.fromRGBO(255, 215, 209, 1),
                 ),
-                // SquircleButton(
-                //   onTap: () {
-                //     Navigator.pushReplacement(context,
-                //         MaterialPageRoute(builder: (context) => const LoginApp()));
-                //   },
-                //   title: "Delete account",
-                //   textColor: const Color.fromRGBO(255, 106, 84, 1),
-                //   background: const Color.fromRGBO(255, 215, 209, 1),
-                // ),
               ]),
             ],
           ),

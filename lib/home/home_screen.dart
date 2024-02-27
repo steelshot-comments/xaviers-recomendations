@@ -3,9 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:map_test/components/location_card.dart';
 import 'package:map_test/components/dropdown.dart';
 import 'package:map_test/post_review.dart';
-import 'package:map_test/profile.dart';
+import 'package:map_test/profile_copy.dart';
+// import 'package:map_test/profile.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:map_test/components/star_rating.dart';
 
 // part 'explore_page.dart';
 part 'explore_page.dart';
@@ -38,8 +40,8 @@ class _HomeScreenState extends State<HomeScreen> {
           actions: [
             IconButton(
                 onPressed: () {
-                  Navigator.of(context)
-                      .push(MaterialPageRoute(builder: (context) => Profile()));
+                  Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) => const ProfileCopy()));
                 },
                 icon: const Icon(Icons.person))
           ]),
@@ -67,8 +69,8 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          Navigator.of(context)
-              .push(MaterialPageRoute(builder: (context) => PostReview()));
+          Navigator.of(context).push(
+              MaterialPageRoute(builder: (context) => const PostReview()));
         },
         backgroundColor: const Color.fromRGBO(204, 91, 75, 1),
         child: const Icon(
